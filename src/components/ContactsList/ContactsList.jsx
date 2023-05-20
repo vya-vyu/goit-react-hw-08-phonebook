@@ -2,8 +2,8 @@ import s from './ContactsList.module.css';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectFilteredContacts } from 'redux/contactsSelectors';
-import { getContacts, deleteContact } from 'redux/contactsOperation';
+import { selectFilteredContacts } from 'redux/Contacts/contactsSelectors';
+import { getContacts, deleteContact } from 'redux/Contacts/contactsOperation';
 import { useEffect } from 'react';
 import Loader from 'components/Loader/Loader';
 
@@ -19,13 +19,13 @@ const ContactsList = () => {
     <>
       <Loader>
         <ul>
-          {filteredContacts.map(({ id, name, phone }) => {
+          {filteredContacts.map(({ id, name, number }) => {
             return (
               <li key={id}>
                 <div className={s.item}>
                   {' '}
                   <span>
-                    {name}: {phone}
+                    {name}: {number}
                   </span>
                   <button
                     id={id}

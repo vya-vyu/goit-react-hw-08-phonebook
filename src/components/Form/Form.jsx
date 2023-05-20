@@ -3,8 +3,8 @@ import { useState } from 'react';
 import s from './Form.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsOperation';
-import { selectContacts } from 'redux/contactsSelectors';
+import { addContact } from 'redux/Contacts/contactsOperation';
+import { selectContacts } from 'redux/Contacts/contactsSelectors';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Form = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const data = { name: name, phone: number };
+    const data = { name: name, number: number };
     contacts.find(
       contact => contact.name.toLowerCase() === data.name.toLowerCase()
     )

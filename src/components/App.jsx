@@ -1,25 +1,35 @@
-import FilterContacts from './FilterContacts/FilterContacts';
-
-import ContactsList from './ContactsList/ContactsList';
-import Form from './Form/Form';
+// import FilterContacts from './FilterContacts/FilterContacts';
+import { Routes, Route, Navigate } from 'react-router';
+import ContactsPage from 'pages/ContactsPage';
+// import Form from './Form/Form';
+import RegisterPage from 'pages/RegistrePage';
+import LoginPage from 'pages/LoginPage';
+import { selectIsAuth } from 'redux/Auth/authSelectors';
+import { useSelector } from 'react-redux';
+import { fetchCurrentUser } from 'redux/Auth/authOperation';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: '40px',
-        // justifyContent: 'center',
-        alignItems: 'center',
-        color: '#010101',
-      }}
-    >
-      <Form />
-      <h2>Contacts</h2>
-      <FilterContacts />
-      <ContactsList />
-    </div>
+    <>
+      {isAuth ? (
+        <Routes>
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="*" element={<Navigate to="/contacts" />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      )}
+    </>
   );
 };
