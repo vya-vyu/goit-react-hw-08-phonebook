@@ -38,8 +38,8 @@ const authSlice = createSlice({
         state.token = null;
         state.isAuth = false;
       })
+
       .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.user = payload;
         state.isAuth = true;
       });

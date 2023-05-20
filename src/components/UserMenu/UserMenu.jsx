@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { logOutUser } from 'redux/Auth/authOperation';
+import { Typography, Button, Toolbar } from '@mui/material';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
@@ -8,8 +9,18 @@ const UserMenu = () => {
 
   return (
     <div>
-      <p>{name}</p>
-      <button onClick={() => dispatch(logOutUser())}>Logout</button>
+      <Toolbar sx={{ flexWrap: 'wrap' }}>
+        <Typography variant="h6" color="inherit" sx={{ flexGrow: 1 }}>
+          Hello, {name}
+        </Typography>
+        <Button
+          onClick={() => dispatch(logOutUser())}
+          variant="outlined"
+          sx={{ my: 1, mx: 1.5 }}
+        >
+          Logout
+        </Button>
+      </Toolbar>
     </div>
   );
 };

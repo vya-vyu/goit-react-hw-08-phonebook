@@ -1,7 +1,6 @@
 import { useState } from 'react';
-// import { v4 as uuidv4 } from 'uuid';
-import s from './Form.module.css';
 
+import { Grid, Box, TextField, Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/Contacts/contactsOperation';
 import { selectContacts } from 'redux/Contacts/contactsSelectors';
@@ -31,46 +30,52 @@ const Form = () => {
 
   return (
     <>
-      <form className={s.phonebook} onSubmit={handleSubmit}>
-        <div className={s.inputWrapper}>
-          <label htmlFor="name" className={s.title}>
-            Name:
-          </label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            value={name}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            onChange={e => {
-              setName(e.currentTarget.value);
-            }}
-            className={s.inputText}
-          />
-          <label htmlFor="number" className={s.title}>
-            Number:
-          </label>
-          <input
-            id="number"
-            type="tel"
-            name="number"
-            value={number}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            onChange={e => {
-              setNumber(e.currentTarget.value);
-            }}
-            className={s.inputText}
-          />
-        </div>
-
-        <button type="submit" className={s.submit}>
-          Add contact
-        </button>
-      </form>
+      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <TextField
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="email"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              value={name}
+              onChange={e => {
+                setName(e.currentTarget.value);
+              }}
+            />
+          </Grid>
+          <Grid item xs={8}>
+            <TextField
+              required
+              fullWidth
+              name="number"
+              label="Number"
+              type="tel"
+              id="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              value={number}
+              onChange={e => {
+                setNumber(e.currentTarget.value);
+              }}
+            />
+          </Grid>
+          <Grid item xs={8}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Add contact
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
     </>
   );
 };

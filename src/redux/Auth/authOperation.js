@@ -44,14 +44,14 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
     const refreshToken = state.auth.token;
-    console.log(refreshToken);
+
     if (refreshToken === null) {
       return rejectWithValue();
     }
     token.set(refreshToken);
     try {
       const data = await fetchCurrentUserApi();
-      console.log(data);
+
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

@@ -1,7 +1,6 @@
-// import FilterContacts from './FilterContacts/FilterContacts';
 import { Routes, Route, Navigate } from 'react-router';
 import ContactsPage from 'pages/ContactsPage';
-// import Form from './Form/Form';
+
 import RegisterPage from 'pages/RegistrePage';
 import LoginPage from 'pages/LoginPage';
 import { selectIsAuth } from 'redux/Auth/authSelectors';
@@ -13,6 +12,7 @@ import { useEffect } from 'react';
 export const App = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
+
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);

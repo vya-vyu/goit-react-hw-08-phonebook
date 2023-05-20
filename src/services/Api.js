@@ -27,7 +27,6 @@ export const registerUserApi = ({ name, email, password }) => {
   return axios
     .post('/users/signup', { name, email, password })
     .then(({ data }) => {
-      console.log(data);
       token.set(data.token);
       return data;
     });
@@ -46,7 +45,6 @@ export const logOutUserApi = () => {
 };
 export const fetchCurrentUserApi = () => {
   return axios.get('/users/current').then(({ data }) => {
-    console.log(data);
     return data;
   });
 };

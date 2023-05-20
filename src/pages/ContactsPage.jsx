@@ -5,23 +5,27 @@ import UserMenu from 'components/UserMenu/UserMenu';
 
 const ContactsPage = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: '40px',
-        // justifyContent: 'center',
-        alignItems: 'center',
-        color: '#010101',
-      }}
-    >
+    <>
       <UserMenu />
-      <Form />
-      <h2>Contacts</h2>
-      <FilterContacts />
-      <ContactsList />
-    </div>
+      <div
+        style={{
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'wrap',
+          marginTop: '20px',
+
+          justifyContent: 'center',
+
+          color: '#010101',
+        }}
+      >
+        <Form />
+        <div>
+          <FilterContacts />
+          <ContactsList />
+        </div>
+      </div>
+    </>
   );
 };
 
