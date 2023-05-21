@@ -14,7 +14,7 @@ const Form = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const data = { name: name, number: number };
+    const data = { name, number };
     contacts.find(
       contact => contact.name.toLowerCase() === data.name.toLowerCase()
     )
